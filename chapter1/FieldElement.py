@@ -55,5 +55,12 @@ class FieldElement:
 
 		# pow 함수 사용
 		# num = pow(self.num, exponent) % self.prime
-		num = pow(self.num, exponent, self.prime)  # 이게 더 효율적
+		n = exponent % (self.prime - 1)
+		num = pow(self.num, n, self.prime)  # 매 곱셈 단계에서 나머지연산으로 값의 크기를 줄이기 때문에 더 효율적
+		return self.__class__(num, self.prime)
+
+	def __truediv__(self, other):
+		if self.prime != other.prime:
+			raise TypeError('Cannot div two numbers in different Fields')
+		num = self.num * pow(other.num, self.prime - 2) % self.prime
 		return self.__class__(num, self.prime)

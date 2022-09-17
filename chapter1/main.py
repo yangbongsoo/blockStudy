@@ -66,5 +66,16 @@ print(a ** 3 == b)
 primes = [7, 11, 17, 31]
 
 for p in primes:
-	print([(i ** (p - 1)) % p for i in range(1, p)])
+	# print([(i ** (p - 1)) % p for i in range(1, p)])
 	print([pow(i, (p - 1), p) for i in range(1, p)])  # pow 사용
+
+# 유한체 나눗셈. 연습문제 1.9
+a = FieldElement(2, 19)
+b = FieldElement(7, 19)
+c = FieldElement(3, 19)
+print(a / b == c)
+
+# 1.8 거듭제곱 메서드 수정
+a = FieldElement(7, 13)
+b = FieldElement(8, 13)
+print(a ** -3 == b)
